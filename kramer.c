@@ -41,7 +41,7 @@ void replaceColumn(double** matrix_, int rows_, int newCols_, double* newColumn_
     }
 }
 
-double determinantSlay(double** matrix_, double size_)
+double determinantSlay(double** matrix_, int size_)
 {
    double det = 0;
 
