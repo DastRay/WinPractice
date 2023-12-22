@@ -43,47 +43,54 @@ void replaceColumn(double** matrix_, int rows_, int newCols_, double* newColumn_
 
 double determinantSlay(double** matrix_, double size_)
 {
-   double det = 0;
+    double det = 0;
 
-   if (size_ == 1) {
-      return matrix_[0][0];
-   }
-   else if (size_ == 2) {
-      return matrix_[0][0] * matrix_[1][1] - matrix_[0][1] * matrix_[1][0];
-   }
-   else
-   {
-      double** temp = malloc((size_ - 1) * sizeof(double*));
-      for (int i = 0; i < size_ - 1; i++)
-      {
-         temp[i] = malloc((size_ - 1) * sizeof(double));
-      }
-      int sign = 1;
+    if (size_ == 1) 
+    {
+        return matrix_[0][0];
+    }
+    else 
+        if (size_ == 2) 
+    {
+        return matrix_[0][0] * matrix_[1][1] - matrix_[0][1] * matrix_[1][0];
+    }
+    else
+    {
+        double** temp = malloc((size_ - 1) * sizeof(double*));
+        for (int i = 0; i < size_ - 1; i++)
+        {
+            temp[i] = malloc((size_ - 1) * sizeof(double));
+        }
+        int sign = 1;
 
-      for (int k = 0; k < size_; k++) {
-         int sub_i = 0;
-         for (int i = 1; i < size_; i++) {
-            int sub_j = 0;
-            for (int j = 0; j < size_; j++) {
-               if (j == k) {
-                  continue;
-               }
-               temp[sub_i][sub_j] = matrix_[i][j];
-               sub_j++;
+        for (int k = 0; k < size_; k++) 
+        {
+            int sub_i = 0;
+            for (int i = 1; i < size_; i++) 
+            {
+                int sub_j = 0;
+                for (int j = 0; j < size_; j++) 
+                {
+                    if (j == k) 
+                    {
+                        continue;
+                    }
+                    temp[sub_i][sub_j] = matrix_[i][j];
+                    sub_j++;
+                }
+                sub_i++;
             }
-            sub_i++;
-         }
-         det += sign * matrix_[0][k] * determinantSlay(temp, size_ - 1);
-         sign = -sign;
-      }
+            det += sign * matrix_[0][k] * determinantSlay(temp, size_ - 1);
+            sign = -sign;
+        }
 
-      for (int i = 0; i < size_ - 1; i++) {
-         free(temp[i]);
-      }
-      free(temp);
-   }
+        for (int i = 0; i < size_ - 1; i++) {
+            free(temp[i]);
+        }
+        free(temp);
+    }
 
-   return det;
+    return det;
 }
 
 void CramerMethod(double** A_, double* B_, int n_)
