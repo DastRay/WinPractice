@@ -6,7 +6,7 @@
 
 void readSLAYmatrix(double** A_, double* B_, int n_)
 {
-   printf("Введите коэффиценты СЛАУ (A) и столбец свободных членов (B):\n");
+   printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РµРЅС‚С‹ РЎР›РђРЈ (A) Рё СЃС‚РѕР»Р±РµС† СЃРІРѕР±РѕРґРЅС‹С… С‡Р»РµРЅРѕРІ (B):\n");
    for (int i = 0; i < n_; i++)
    {
       for (int j = 0; j < n_; j++)
@@ -89,19 +89,19 @@ double determinantSlay(double** matrix_, double size_)
 void CramerMethod(double** A_, double* B_, int n_)
 {  
    printf("\n");
-   printf("Расширенная матрица AB:\n");
+   printf("Р Р°СЃС€РёСЂРµРЅРЅР°СЏ РјР°С‚СЂРёС†Р° AB:\n");
    printSLAYmatrix(A_, B_, n_);
-   printf("Решение СЛАУ методом Крамера:\n");
+   printf("Р РµС€РµРЅРёРµ РЎР›РђРЈ РјРµС‚РѕРґРѕРј РљСЂР°РјРµСЂР°:\n");
 
    double** copy_A = copyMatrix(A_, n_, n_);
    double det = determinantSlay(copy_A, n_);
 
    if (det == 0)
    {
-      printf("Определитель равен нулю, СЛАУ имеет бесконечное количество решений или не имеет решений.\nВоспользуйтесь другим способом для решения.\n");
+      printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ СЂР°РІРµРЅ РЅСѓР»СЋ, РЎР›РђРЈ РёРјРµРµС‚ Р±РµСЃРєРѕРЅРµС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµС€РµРЅРёР№ РёР»Рё РЅРµ РёРјРµРµС‚ СЂРµС€РµРЅРёР№.\nР’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РґСЂСѓРіРёРј СЃРїРѕСЃРѕР±РѕРј РґР»СЏ СЂРµС€РµРЅРёСЏ.\n");
       return -1;
    }
-   printf("Определитель матрицы А равен: %.4lf\n", det);
+   printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹ Рђ СЂР°РІРµРЅ: %.4lf\n", det);
 
    double* res = malloc(n_ * sizeof(double));
 
@@ -110,16 +110,16 @@ void CramerMethod(double** A_, double* B_, int n_)
    {
       double** copy = copyMatrix(A_, n_, n_);
       replaceColumn(copy, n_, k, B_);
-      printf("Дельта %d:\n", k + 1);
+      printf("Р”РµР»СЊС‚Р° %d:\n", k + 1);
       printMatrix(copy, n_, n_);
 
       double determ = determinantSlay(copy, n_);
-      printf("Определитель дельта %d = %.3lf\n", k + 1, determ);
+      printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ РґРµР»СЊС‚Р° %d = %.3lf\n", k + 1, determ);
       printf("\n");
       res[k] = determ / det;
    }
 
-   printf("Решение системы:\n");
+   printf("Р РµС€РµРЅРёРµ СЃРёСЃС‚РµРјС‹:\n");
    for (int i = 0; i < n_; i++)
    {
       printf("x[%d] = %5.3lf\n", i + 1, res[i]);
