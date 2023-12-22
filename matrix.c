@@ -6,7 +6,7 @@
 
 void readMatrix(double** matrix_, int rows_, int cols_)
 {
-   printf("Введите элементы матрицы построчно:\n");
+   printf("Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚С‹ РјР°С‚СЂРёС†С‹ РїРѕСЃС‚СЂРѕС‡РЅРѕ:\n");
    for (int i = 0; i < rows_; i++)
    {
       for (int j = 0; j < cols_; j++)
@@ -178,7 +178,7 @@ double** findMinor(double** matrix_, int rows_, int cols_, int n_, int m_)
 
 double** findAlgComplement(double** matrix_, int rows_, int cols_)
 {
-   double** res = malloc(rows_ * sizeof(double*)); // выделение памяти под каждый столбец
+   double** res = malloc(rows_ * sizeof(double*)); // РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РєР°Р¶РґС‹Р№ СЃС‚РѕР»Р±РµС†
    if (!res)
       return 1;
 
@@ -220,17 +220,17 @@ double** reverseMatrix(double** matrix_, int rows_, int cols_)
    double det = determinant(copy, rows_);
    if (det == 0)
    {
-      printf("Опредедитель матрицы равен нулю, обратную матрицу найти невозможно!\n");
+      printf("РћРїСЂРµРґРµРґРёС‚РµР»СЊ РјР°С‚СЂРёС†С‹ СЂР°РІРµРЅ РЅСѓР»СЋ, РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ РЅР°Р№С‚Рё РЅРµРІРѕР·РјРѕР¶РЅРѕ!\n");
       return -1;
    }
-   printf("Определитель матрицы равен: %.4lf\n", det);
+   printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹ СЂР°РІРµРЅ: %.4lf\n", det);
 
    double** temp = findAlgComplement(matrix_, rows_, cols_);
-   printf("Матрица алгебраических дополнений:\n");
+   printf("РњР°С‚СЂРёС†Р° Р°Р»РіРµР±СЂР°РёС‡РµСЃРєРёС… РґРѕРїРѕР»РЅРµРЅРёР№:\n");
    printMatrix(temp, rows_, cols_);
 
    double** transopse_temp = transposeMatrix(temp, rows_, cols_);
-   printf("Транспонированная матрица алгебраических дополнений:\n");
+   printf("РўСЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅР°СЏ РјР°С‚СЂРёС†Р° Р°Р»РіРµР±СЂР°РёС‡РµСЃРєРёС… РґРѕРїРѕР»РЅРµРЅРёР№:\n");
    printMatrix(transopse_temp, rows_, cols_);
 
    divideMatrix(transopse_temp, rows_, cols_, det);
